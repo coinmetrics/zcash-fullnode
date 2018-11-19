@@ -5,6 +5,7 @@ RUN set -ex; \
 	apt-get install -y --no-install-recommends \
 		ca-certificates \
 		curl \
+		libgomp1 \
 	; \
 	rm -rf /var/lib/apt/lists/*
 
