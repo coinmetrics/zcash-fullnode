@@ -16,4 +16,6 @@ RUN curl -L https://z.cash/downloads/zcash-${VERSION}-linux64.tar.gz | tar -xz -
 RUN useradd -m -u 1000 -s /bin/bash runner
 USER runner
 
+RUN zcash-fetch-params
+
 ENTRYPOINT ["zcashd"]
