@@ -1,21 +1,56 @@
+FROM ubuntu:18.04 as builder
+
+RUN set -ex; \
+	apt-get update; \
+	apt-get install -y --no-install-recommends \
+		autoconf \
+		automake \
+		bsdmainutils \
+		build-essential \
+		ca-certificates \
+		curl \
+		g++-multilib \
+		git \
+		libc6-dev \
+		libtool \
+		m4 \
+		ncurses-dev \
+		pkg-config \
+		python \
+		unzip \
+		zlib1g-dev \
+	; \
+	rm -rf /var/lib/apt/lists/*
+
+RUN useradd -m -u 1000 -s /bin/bash builder
+USER builder
+WORKDIR /home/builder
+
+ARG VERSION
+
+RUN git clone --depth=1 --branch=v${VERSION} https://github.com/zcash/zcash.git
+
+RUN set -ex; \
+	cd zcash; \
+	./zcutil/build.sh -j$(nproc)
+
+
 FROM ubuntu:18.04
 
 RUN set -ex; \
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
 		ca-certificates \
-		curl \
 		libgomp1 \
+		wget \
 	; \
 	rm -rf /var/lib/apt/lists/*
 
-ARG VERSION
-
-RUN curl -L https://z.cash/downloads/zcash-${VERSION}-linux64.tar.gz | tar -xz --strip-components=1 -C /
+COPY --from=builder /home/builder/zcash/src/zcashd /home/builder/zcash/zcutil/fetch-params.sh /usr/bin/
 
 RUN useradd -m -u 1000 -s /bin/bash runner
 USER runner
 
-RUN zcash-fetch-params
+RUN fetch-params.sh
 
 ENTRYPOINT ["zcashd"]

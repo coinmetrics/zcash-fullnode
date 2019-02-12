@@ -14,9 +14,9 @@ docker pull quay.io/coinmetrics/fullnode-zcash:<version>
 
 ## Security
 
-This image uses official binaries from https://z.cash/. zkSNARK parameters are downloaded and included at build time with official `zcash-fetch-parahs` script.
+This image builds binaries from sources downloaded from https://github.com/zcash/zcash. zkSNARK parameters are downloaded and included at build time with official [fetch-params.sh](https://github.com/zcash/zcash/blob/master/zcutil/fetch-params.sh) script.
 
-Image is built on shared Gitlab CI runners provided by Gitlab.com. [CI logs](https://gitlab.com/coinmetrics/fullnodes/zcash/pipelines)
+Image is built on Coin Metrics infrastructure. [CI logs](https://gitlab.com/coinmetrics/fullnodes/zcash/pipelines)
 
 ## License
 
