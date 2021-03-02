@@ -14,6 +14,7 @@ RUN set -ex; \
 		git \
 		libc6-dev \
 		libtool \
+		libltdl-dev \
 		m4 \
 		ncurses-dev \
 		pkg-config \
