@@ -8,6 +8,7 @@ RUN set -ex; \
 		bsdmainutils \
 		build-essential \
 		ca-certificates \
+		clang-9 \
 		curl \
 		g++-multilib \
 		git \
