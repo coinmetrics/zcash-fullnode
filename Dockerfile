@@ -2,7 +2,7 @@ FROM ubuntu:18.04 as builder
 
 RUN set -ex; \
 	apt-get update; \
-	apt-get install -y --no-install-recommends \
+	apt-get install -y \
 		autoconf \
 		automake \
 		bsdmainutils \
