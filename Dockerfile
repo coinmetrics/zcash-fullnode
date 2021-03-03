@@ -2,17 +2,19 @@ FROM ubuntu:18.04 as builder
 
 RUN set -ex; \
 	apt-get update; \
-	apt-get install -y --no-install-recommends \
+	apt-get install -y \
 		autoconf \
 		automake \
 		bsdmainutils \
 		build-essential \
 		ca-certificates \
+		clang-9 \
 		curl \
 		g++-multilib \
 		git \
 		libc6-dev \
 		libtool \
+		libltdl-dev \
 		m4 \
 		ncurses-dev \
 		pkg-config \
