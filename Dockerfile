@@ -16,6 +16,7 @@ RUN set -ex; \
 		libc6-dev \
 		libtool \
 		libltdl-dev \
+		libtinfo5 \
 		m4 \
 		ncurses-dev \
 		pkg-config \
