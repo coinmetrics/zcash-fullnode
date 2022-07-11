@@ -1,5 +1,6 @@
 FROM ubuntu:20.04 as builder
 
+ARG DEBIAN_FRONTEND=noninteractive
 RUN set -ex; \
 	apt-get update; \
 	apt-get install -y \
