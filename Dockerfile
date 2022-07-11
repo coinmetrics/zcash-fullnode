@@ -1,5 +1,6 @@
-FROM ubuntu:18.04 as builder
+FROM ubuntu:20.04 as builder
 
+ARG DEBIAN_FRONTEND=noninteractive
 RUN set -ex; \
 	apt-get update; \
 	apt-get install -y \
@@ -15,6 +16,7 @@ RUN set -ex; \
 		libc6-dev \
 		libtool \
 		libltdl-dev \
+		libtinfo5 \
 		m4 \
 		ncurses-dev \
 		pkg-config \
@@ -37,7 +39,7 @@ RUN set -ex; \
 	./zcutil/build.sh -j$(nproc)
 
 
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 RUN set -ex; \
 	apt-get update; \
