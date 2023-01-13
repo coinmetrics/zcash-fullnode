@@ -58,3 +58,6 @@ USER runner
 RUN fetch-params.sh
 
 ENTRYPOINT ["zcashd"]
+
+# Check that we can at least execute zcashd
+RUN ["zcashd", "--version"]
